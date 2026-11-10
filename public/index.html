@@ -1,0 +1,853 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>DriveWise | Seu lucro na direção certa</title>
+
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         NOTIFICAÇÕES
+    ========================================== -->
+
+    <div
+        id="toast"
+        class="notice"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+    <!-- ==========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="topbar">
+        <div class="container top-inner">
+
+            <a href="#inicio" class="brand" data-view="inicio">
+                <span class="brand-symbol">◉</span>
+
+                <span>
+                    Drive<span class="accent">Wise</span>
+                    <small>Seu lucro na direção certa</small>
+                </span>
+            </a>
+
+            <span class="tag">MVP • demonstração</span>
+
+        </div>
+    </header>
+
+
+    <!-- ==========================================
+         ESTRUTURA PRINCIPAL
+    ========================================== -->
+
+    <div class="container app-layout">
+
+        <!-- MENU LATERAL -->
+        <aside class="sidebar" aria-label="Menu principal">
+
+            <nav id="sideNav" class="nav-links"></nav>
+
+            <div class="sidebar-note">
+                Dados financeiros reais somente quando a API
+                estiver conectada. Corridas e mapa são simulações.
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main id="main" class="content" tabindex="-1">
+
+
+            <!-- ==================================
+                 PÁGINA 1 - INÍCIO
+            ================================== -->
+
+            <section class="page active" id="view-inicio">
+
+                <div class="hero">
+
+                    <div>
+                        <div class="eyebrow">
+                            BEM-VINDO AO DRIVEWISE
+                        </div>
+
+                        <h1>
+                            Mais controle.<br>
+                            <span class="accent">Mais lucro.</span>
+                        </h1>
+
+                        <p>
+                            Planeje corridas, acompanhe seus resultados
+                            e tome decisões melhores.
+                        </p>
+
+                        <div class="actions">
+                            <button class="btn-green" data-go="corridas">
+                                Analisar corrida →
+                            </button>
+
+                            <button
+                                class="btn-outline-light-custom"
+                                data-go="painel"
+                            >
+                                Meu painel
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <!-- ILUSTRAÇÃO DA ROTA -->
+                    <div class="hero-visual">
+
+                        <div class="route-art">
+                            <span>●</span>
+                            <div class="route-dash"></div>
+                            <span>◆</span>
+                        </div>
+
+                        <b>Rota inteligente</b>
+                        <small>Simulação para apresentação</small>
+
+                    </div>
+                </div>
+
+
+                <!-- ACESSOS RÁPIDOS -->
+                <div class="section-head">
+                    <h2>Seu dia em um só lugar</h2>
+                </div>
+
+                <div class="quick-grid">
+
+                    <button data-go="corridas" class="quick">
+                        <span>🚗</span>
+                        <b>Analisar corrida</b>
+                        <small>R$/km e decisão</small>
+                    </button>
+
+                    <button data-go="painel" class="quick">
+                        <span>📊</span>
+                        <b>Resumo diário</b>
+                        <small>Ganhos e despesas</small>
+                    </button>
+
+                    <button data-go="alertas" class="quick">
+                        <span>🔔</span>
+                        <b>Alertas</b>
+                        <small>Manutenção</small>
+                    </button>
+
+                    <button data-go="relatorios" class="quick">
+                        <span>📈</span>
+                        <b>Relatórios</b>
+                        <small>Resultados do período</small>
+                    </button>
+
+                </div>
+            </section>
+
+
+            <!-- ==================================
+                 PÁGINA 2 - CORRIDAS
+            ================================== -->
+
+            <section class="page" id="view-corridas">
+
+                <div class="page-heading">
+
+                    <div>
+                        <div class="eyebrow">
+                            DECISÕES INTELIGENTES
+                        </div>
+
+                        <h1>Análise de corridas</h1>
+
+                        <p>
+                            Compare o valor recebido com seu mínimo
+                            por quilômetro.
+                        </p>
+                    </div>
+
+                    <span class="pill">Modo demonstração</span>
+
+                </div>
+
+
+                <div class="two-cols">
+
+                    <!-- FORMULÁRIO DE CORRIDA -->
+                    <div class="panel">
+
+                        <h2>Nova oferta de corrida</h2>
+
+                        <form id="rideForm" class="form-grid">
+
+                            <label>
+                                Aplicativo
+
+                                <select id="rideApp">
+                                    <option>Uber</option>
+                                    <option>99</option>
+                                    <option>inDrive</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                Valor oferecido (R$)
+
+                                <input
+                                    id="rideValue"
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    value="24.50"
+                                    required
+                                >
+                            </label>
+
+                            <label>
+                                Distância total (km)
+
+                                <input
+                                    id="rideKm"
+                                    type="number"
+                                    min="0.01"
+                                    step="0.01"
+                                    value="12"
+                                    required
+                                >
+                            </label>
+
+                            <label>
+                                Tempo estimado (min)
+
+                                <input
+                                    id="rideMinutes"
+                                    type="number"
+                                    min="1"
+                                    value="28"
+                                    required
+                                >
+                            </label>
+
+                            <button
+                                class="btn-green full"
+                                type="submit"
+                            >
+                                Analisar oferta
+                            </button>
+
+                        </form>
+
+
+                        <!-- RESULTADO DA ANÁLISE -->
+                        <div
+                            id="rideResult"
+                            class="result-box"
+                            aria-live="polite"
+                        >
+                            Preencha os dados e clique em analisar.
+                        </div>
+
+                    </div>
+
+
+                    <!-- MAPA ILUSTRATIVO -->
+                    <div class="panel">
+
+                        <h2>Mapa ilustrativo</h2>
+
+                        <div class="mock-map">
+
+                            <div class="street s1"></div>
+                            <div class="street s2"></div>
+                            <div class="street s3"></div>
+                            <div class="street s4"></div>
+
+                            <div class="map-path"></div>
+
+                            <span class="pin start">A</span>
+                            <span class="pin end">B</span>
+
+                            <span class="map-label">
+                                Rota simulada • sem GPS
+                            </span>
+
+                        </div>
+
+                        <p class="muted mt-3">
+                            O mapa não usa localização real nem recebe
+                            chamadas da Uber ou 99.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <!-- CORRIDA SIMULADA -->
+                <div class="panel mt-3">
+
+                    <h2>Corrida em andamento (simulação)</h2>
+
+                    <div class="actions">
+
+                        <button id="startRide" class="btn-green">
+                            Iniciar corrida simulada
+                        </button>
+
+                        <button
+                            id="finishRide"
+                            class="btn-outline-light-custom"
+                            disabled
+                        >
+                            Finalizar corrida
+                        </button>
+
+                    </div>
+
+                    <p id="rideStatus" class="muted mt-3">
+                        Nenhuma corrida em andamento.
+                    </p>
+
+                </div>
+            </section>
+
+
+            <!-- ==================================
+                 PÁGINA 3 - RESUMO DIÁRIO
+            ================================== -->
+
+            <section class="page" id="view-painel">
+
+                <div class="page-heading">
+
+                    <div>
+                        <div class="eyebrow">
+                            CONTROLE FINANCEIRO
+                        </div>
+
+                        <h1>Resumo do dia</h1>
+
+                        <p>
+                            Veja seu resultado com base nos
+                            lançamentos cadastrados.
+                        </p>
+                    </div>
+
+                    <label class="date-label">
+                        Data
+                        <input id="date" type="date">
+                    </label>
+
+                </div>
+
+
+                <!-- INDICADORES FINANCEIROS -->
+                <div class="metrics">
+
+                    <div class="metric">
+                        <span>Ganhos</span>
+                        <strong id="revenue">R$ 0,00</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Despesas</span>
+                        <strong id="expenses">R$ 0,00</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Lucro registrado</span>
+                        <strong id="profit">R$ 0,00</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Resultado / hora</span>
+                        <strong id="perHour">R$ 0,00</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="two-cols">
+
+                    <!-- REGISTRO FINANCEIRO -->
+                    <div class="panel">
+
+                        <h2>Registrar ganhos e despesas</h2>
+
+                        <form id="entryForm" class="form-grid">
+
+                            <label>
+                                Tipo
+
+                                <select id="kind">
+                                    <option value="ganho">Ganho</option>
+                                    <option value="combustivel">Combustível</option>
+                                    <option value="aluguel">Aluguel</option>
+                                    <option value="manutencao">Manutenção</option>
+                                    <option value="multa">Multa</option>
+                                    <option value="outros">Outros gastos</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                Valor (R$)
+
+                                <input
+                                    id="amount"
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    required
+                                >
+                            </label>
+
+                            <label>
+                                Quilômetros rodados
+
+                                <input
+                                    id="km"
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    value="0"
+                                >
+                            </label>
+
+                            <label>
+                                Horas trabalhadas
+
+                                <input
+                                    id="hours"
+                                    type="number"
+                                    min="0"
+                                    max="24"
+                                    step="0.25"
+                                    value="0"
+                                >
+                            </label>
+
+                            <label class="full">
+                                Observação
+
+                                <input
+                                    id="description"
+                                    maxlength="255"
+                                    placeholder="Ex.: abastecimento"
+                                >
+                            </label>
+
+                            <button
+                                class="btn-green full"
+                                type="submit"
+                            >
+                                Salvar lançamento
+                            </button>
+
+                        </form>
+                    </div>
+
+
+                    <!-- METAS E LANÇAMENTOS -->
+                    <div>
+
+                        <div class="panel">
+
+                            <h2>Meta diária</h2>
+
+                            <form id="settingsForm" class="form-grid">
+
+                                <label>
+                                    Meta (R$)
+
+                                    <input
+                                        id="goal"
+                                        type="number"
+                                        min="0"
+                                        step="0.01"
+                                        value="200"
+                                        required
+                                    >
+                                </label>
+
+                                <label>
+                                    Mínimo R$/km
+
+                                    <input
+                                        id="minimum"
+                                        type="number"
+                                        min="0.01"
+                                        step="0.01"
+                                        value="1.5"
+                                        required
+                                    >
+                                </label>
+
+                                <button
+                                    class="btn-green full"
+                                    type="submit"
+                                >
+                                    Atualizar metas
+                                </button>
+
+                            </form>
+
+
+                            <!-- PROGRESSO DA META -->
+                            <div class="progress-track">
+                                <div id="goalBar"></div>
+                            </div>
+
+                            <p id="goalText" class="muted">
+                                0% da meta atingida
+                            </p>
+
+                        </div>
+
+
+                        <!-- HISTÓRICO DO DIA -->
+                        <div class="panel mt-3">
+
+                            <h2>Lançamentos do dia</h2>
+
+                            <div id="entries" class="entry-list">
+                                <p class="muted">
+                                    Nenhum lançamento.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <p class="muted footnote">
+                    O aluguel semanal não é descontado automaticamente:
+                    registre-o como despesa. Os resultados refletem
+                    apenas os valores informados.
+                </p>
+
+            </section>
+
+
+            <!-- ==================================
+                 PÁGINA 4 - RELATÓRIOS
+            ================================== -->
+
+            <section class="page" id="view-relatorios">
+
+                <div class="page-heading">
+
+                    <div>
+                        <div class="eyebrow">
+                            ANÁLISE DE RESULTADOS
+                        </div>
+
+                        <h1>Relatórios</h1>
+
+                        <p>
+                            Visão dos lançamentos recentes e
+                            categorias de despesa.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- INDICADORES DOS RELATÓRIOS -->
+                <div class="metrics">
+
+                    <div class="metric">
+                        <span>Ganhos no período</span>
+                        <strong id="reportRevenue">R$ 0,00</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Despesas no período</span>
+                        <strong id="reportExpenses">R$ 0,00</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Saldo no período</span>
+                        <strong id="reportProfit">R$ 0,00</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Lançamentos</span>
+                        <strong id="reportCount">0</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- GRÁFICO DE DESPESAS -->
+                <div class="panel">
+
+                    <h2>Despesas por categoria</h2>
+
+                    <div id="reportBars" class="report-bars">
+                        <p class="muted">Sem dados.</p>
+                    </div>
+
+                    <p class="muted">
+                        O relatório usa até os 100 lançamentos mais
+                        recentes retornados pela API.
+                    </p>
+
+                </div>
+            </section>
+
+
+            <!-- ==================================
+                 PÁGINA 5 - ALERTAS
+            ================================== -->
+
+            <section class="page" id="view-alertas">
+
+                <div class="page-heading">
+
+                    <div>
+                        <div class="eyebrow">
+                            CUIDADO COM O VEÍCULO
+                        </div>
+
+                        <h1>Alertas e manutenção</h1>
+
+                        <p>
+                            Registre lembretes para óleo,
+                            pneus e revisões.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="two-cols">
+
+                    <!-- CADASTRO DE LEMBRETES -->
+                    <div class="panel">
+
+                        <h2>Novo lembrete</h2>
+
+                        <form id="alertForm" class="form-grid">
+
+                            <label>
+                                Manutenção
+
+                                <select id="alertType">
+                                    <option>Troca de óleo</option>
+                                    <option>Pneus</option>
+                                    <option>Revisão</option>
+                                    <option>Correia</option>
+                                    <option>Outro</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                Quilometragem de aviso
+
+                                <input
+                                    id="alertKm"
+                                    type="number"
+                                    min="0"
+                                    step="1"
+                                    required
+                                >
+                            </label>
+
+                            <button
+                                class="btn-green full"
+                                type="submit"
+                            >
+                                Adicionar lembrete
+                            </button>
+
+                        </form>
+
+                        <p class="muted mt-3">
+                            Lembretes locais neste navegador;
+                            não há notificações automáticas nem
+                            leitura do hodômetro.
+                        </p>
+
+                    </div>
+
+
+                    <!-- LISTA DE LEMBRETES -->
+                    <div class="panel">
+
+                        <h2>Meus lembretes</h2>
+
+                        <div
+                            id="alertList"
+                            class="entry-list"
+                        ></div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ==================================
+                 PÁGINA 6 - PERFIL
+            ================================== -->
+
+            <section class="page" id="view-perfil">
+
+                <div class="page-heading">
+
+                    <div>
+                        <div class="eyebrow">
+                            PREFERÊNCIAS
+                        </div>
+
+                        <h1>Meu perfil e veículo</h1>
+
+                        <p>
+                            Configure os dados usados no
+                            controle financeiro.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="two-cols">
+
+                    <!-- CADASTRO DO VEÍCULO -->
+                    <div class="panel">
+
+                        <h2>Meu veículo</h2>
+
+                        <form id="vehicleForm" class="form-grid">
+
+                            <label class="full">
+                                Modelo
+
+                                <input
+                                    id="vehicleName"
+                                    maxlength="100"
+                                    placeholder="Ex.: Fiat Argo"
+                                    required
+                                >
+                            </label>
+
+                            <label>
+                                Situação
+
+                                <select id="ownership">
+                                    <option value="alugado">Alugado</option>
+                                    <option value="proprio">Próprio</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                Combustível
+
+                                <select id="fuelType">
+                                    <option>Flex</option>
+                                    <option>Gasolina</option>
+                                    <option>Etanol</option>
+                                    <option>Diesel</option>
+                                    <option>Elétrico</option>
+                                </select>
+                            </label>
+
+                            <label class="full">
+                                Aluguel semanal (R$)
+
+                                <input
+                                    id="rent"
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    value="0"
+                                >
+                            </label>
+
+                            <button
+                                class="btn-green full"
+                                type="submit"
+                            >
+                                Salvar veículo
+                            </button>
+
+                        </form>
+
+                        <p id="vehicleStatus" class="muted mt-3">
+                            Nenhum veículo cadastrado.
+                        </p>
+
+                    </div>
+
+
+                    <!-- INFORMAÇÕES DO PROJETO -->
+                    <div class="panel">
+
+                        <h2>Sobre este MVP</h2>
+
+                        <p>
+                            DriveWise é um projeto acadêmico para
+                            apoiar decisões e controle financeiro
+                            de motoristas de aplicativo.
+                        </p>
+
+                        <p class="muted">
+                            O cadastro não possui autenticação individual.
+                            Para uso real com múltiplos usuários,
+                            serão necessárias contas, autorização
+                            e proteção de dados.
+                        </p>
+
+                        <p class="muted">
+                            Os módulos de mapa e corrida são demonstrativos.
+                            Os dados financeiros exigem Node.js,
+                            Express e MySQL em execução.
+                        </p>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+
+    <!-- ==========================================
+         NAVEGAÇÃO INFERIOR - MOBILE
+    ========================================== -->
+
+    <nav
+        class="bottom-nav"
+        id="bottomNav"
+        aria-label="Navegação móvel"
+    ></nav>
+
+
+    <!-- ==========================================
+         JAVASCRIPT PRINCIPAL
+    ========================================== -->
+
+    <script src="./js/app.js"></script>
+
+</body>
+</html>
